@@ -30,6 +30,25 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             PhotonNetwork.ConnectUsingSettings();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            nickname.text = "Hello, " + PhotonNetwork.NickName;
+            room.text = "Room: " + PhotonNetwork.CurrentRoom.Name;
+            players.text = "Players: " + PhotonNetwork.CurrentRoom.PlayerCount + " of " + PhotonNetwork.CurrentRoom.MaxPlayers;
+        }
+        else if (PhotonNetwork.IsConnected)
+        {
+            nickname.text = "Type your name below and hit PLAY!";
+            room.text = "Not yet in a room...";
+            players.text = "Players: 0";
+        }
+        else
+            nickname.text = room.text = players.text = "";
+    }
+
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster was called by PUN.");
@@ -37,8 +56,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         buttonPlay.gameObject.SetActive(true);
         playerName.gameObject.SetActive(true);
         buttonLeave.gameObject.SetActive(false);
-
-        Play();
     }
 
     public void Play()
@@ -55,6 +72,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         buttonLeave.gameObject.SetActive(true);
     }
 
+    public void Leave()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("Oops, tried to join a room and failed. Calling CreateRoom!");
@@ -63,9 +85,5 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

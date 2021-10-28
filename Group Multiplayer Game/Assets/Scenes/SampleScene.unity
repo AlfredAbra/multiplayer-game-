@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 173, y: -68.7}
-  m_SizeDelta: {x: 327.73373, y: 20.470093}
+  m_AnchoredPosition: {x: 199.26, y: -87}
+  m_SizeDelta: {x: 380.1648, y: 20.4701}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &38456120
 MonoBehaviour:
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1492656386}
         m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
         m_MethodName: Leave
         m_Mode: 1
@@ -827,8 +827,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 173.01, y: -40.8}
-  m_SizeDelta: {x: 327.70645, y: 18.96933}
+  m_AnchoredPosition: {x: 199.47, y: -52.49698}
+  m_SizeDelta: {x: 380.1331, y: 33.9633}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &726354368
 MonoBehaviour:
@@ -948,8 +948,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 173, y: -96}
-  m_SizeDelta: {x: 327.74152, y: 19.791412}
+  m_AnchoredPosition: {x: 199.25845, y: -248.99084}
+  m_SizeDelta: {x: 380.2469, y: 263.283}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &776496661
 GameObject:
@@ -1579,8 +1579,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 178.28, y: -60.5}
-  m_SizeDelta: {x: 336.8681, y: 105.442444}
+  m_AnchoredPosition: {x: 209.31342, y: -202.90765}
+  m_SizeDelta: {x: 398.9349, y: 390.2577}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1292441879
 MonoBehaviour:
@@ -1656,6 +1656,7 @@ MonoBehaviour:
   buttonPlay: {fileID: 1730527753}
   buttonLeave: {fileID: 643202239}
   playerName: {fileID: 55036115}
+  maxPlayersPerRoom: 20
 --- !u!4 &1492656387
 Transform:
   m_ObjectHideFlags: 0
@@ -1946,7 +1947,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1492656386}
         m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
@@ -2245,8 +2246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 173, y: -16}
-  m_SizeDelta: {x: 327.73975, y: 19.791412}
+  m_AnchoredPosition: {x: 199.21602, y: -16}
+  m_SizeDelta: {x: 380.1718, y: 19.7914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2106298035
 MonoBehaviour:
