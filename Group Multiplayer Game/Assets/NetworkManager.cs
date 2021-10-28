@@ -56,10 +56,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         buttonPlay.gameObject.SetActive(true);
         playerName.gameObject.SetActive(true);
         buttonLeave.gameObject.SetActive(false);
+
+        playerName.text = PlayerPrefs.GetString("PlayerName");
     }
 
     public void Play()
     {
+        PlayerPrefs.SetString("PlayerName", playerName.text);
+        PhotonNetwork.NickName = playerName.text;
+
         PhotonNetwork.JoinRandomRoom();
     }
 
