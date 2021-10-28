@@ -30,25 +30,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             PhotonNetwork.ConnectUsingSettings();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (PhotonNetwork.InRoom)
-        {
-            nickname.text = "Hello, " + PhotonNetwork.NickName;
-            room.text = "Room: " + PhotonNetwork.CurrentRoom.Name;
-            players.text = "Players: " + PhotonNetwork.CurrentRoom.PlayerCount + " of " + PhotonNetwork.CurrentRoom.MaxPlayers;
-        }
-        else if (PhotonNetwork.IsConnected)
-        {
-            nickname.text = "Type your name below and hit PLAY!";
-            room.text = "Not yet in a room...";
-            players.text = "Players: 0";
-        }
-        else
-            nickname.text = room.text = players.text = "";
-    }
-
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster was called by PUN.");
@@ -68,15 +49,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
-    public override void OnJoinedRoom()
-    {
-        Debug.Log("Yep, you managed to join a room!");
-        status.text = "Yep, you managed to join a room!";
-        buttonPlay.gameObject.SetActive(false);
-        playerName.gameObject.SetActive(false);
-        buttonLeave.gameObject.SetActive(true);
-    }
-
     public void Leave()
     {
         PhotonNetwork.LeaveRoom();
@@ -90,5 +62,48 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
     }
 
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("Yep, you managed to join a room!");
+        status.text = "Yep, you managed to join a room!";
+        buttonPlay.gameObject.SetActive(false);
+        playerName.gameObject.SetActive(false);
+        buttonLeave.gameObject.SetActive(true);
+    }
+
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        status.text = newPlayer.NickName + " has just entered.";
+    }
+
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+    {
+        status.text = otherPlayer.NickName + " has just left.";
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            nickname.text = "Hello, " + PhotonNetwork.NickName;
+            room.text = "Room: " + PhotonNetwork.CurrentRoom.Name;
+            players.text = "Players: " + PhotonNetwork.CurrentRoom.PlayerCount + " of " + PhotonNetwork.CurrentRoom.MaxPlayers;
+
+            players.text += ":\n";
+            Dictionary<int, Player> mydict = PhotonNetwork.CurrentRoom.Players;
+            int i = 1;
+            foreach (var item in mydict)
+                players.text += string.Format("{0,2}. {1}\n", (i++), item.Value.NickName);
+        }
+        else if (PhotonNetwork.IsConnected)
+        {
+            nickname.text = "Type your name below and hit PLAY!";
+            room.text = "Not yet in a room...";
+            players.text = "Players: 0";
+        }
+        else
+            nickname.text = room.text = players.text = "";
+    }
 
 }
