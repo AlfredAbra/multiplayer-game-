@@ -22,6 +22,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         buttonPlay.gameObject.SetActive(false);
         buttonLeave.gameObject.SetActive(false);
         playerName.gameObject.SetActive(false);
+
+        if (!PhotonNetwork.IsConnected)
+            PhotonNetwork.ConnectUsingSettings();
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("OnConnectedToMaster was called by PUN.");
+        status.text = "Connected to Photon.";
+        buttonPlay.gameObject.SetActive(true);
+        playerName.gameObject.SetActive(true);
+        buttonLeave.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
