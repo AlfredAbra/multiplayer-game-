@@ -18,6 +18,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private byte maxPlayersPerRoom = 20;
 
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +71,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         buttonPlay.gameObject.SetActive(false);
         playerName.gameObject.SetActive(false);
         buttonLeave.gameObject.SetActive(true);
+
+        // Spawn's the player
+        PhotonNetwork.Instantiate(player.name,
+             new Vector3(Random.Range(-15, 15), 1, Random.Range(-15, 15)),
+             Quaternion.Euler(0, Random.Range(-180, 180), 0)
+             , 0);
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
