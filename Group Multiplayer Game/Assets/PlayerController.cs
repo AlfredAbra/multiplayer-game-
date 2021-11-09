@@ -16,6 +16,14 @@ public class PlayerController : MonoBehaviourPun
     void Start()
     {
         // Cursor.lockState = CursorLockMode.Confined;
+        if (!photonView.IsMine)
+        {
+            this.gameObject.tag = "Enemy";
+        }
+        else
+        {
+            this.gameObject.tag = "Player";
+        }
     }
 
     // Update is called once per frame
@@ -32,5 +40,13 @@ public class PlayerController : MonoBehaviourPun
                 fpcam.Rotate(new Vector3(-tilt * tiltSpeed * Time.deltaTime, 0));
         }
         
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "ExitDoor")
+        {
+            walkSpeed = 0;
+        }
     }
 }

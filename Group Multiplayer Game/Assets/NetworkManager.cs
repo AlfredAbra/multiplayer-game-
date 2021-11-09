@@ -76,12 +76,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         // Spawn's the player
         PhotonNetwork.Instantiate(player.name,
-             new Vector3(Random.Range(-10, 10), 1, Random.Range(-10, 10)),
+             new Vector3(Random.Range(-10, 10), 1.25f, Random.Range(-10, 10)),
              Quaternion.Euler(0, Random.Range(-180, 180), 0)
              , 0);
 
         // Spawn Exit Door
-        PhotonNetwork.Instantiate(exitDoor.name, new Vector3(Random.Range(-10, 10), 1, Random.Range(-10, 10)), Quaternion.Euler(-90,0,0), 0);
+        PhotonNetwork.InstantiateRoomObject(exitDoor.name, new Vector3(Random.Range(-10, 10), 0.25f, Random.Range(-10, 10)), Quaternion.Euler(-90,0,0), 0);
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
