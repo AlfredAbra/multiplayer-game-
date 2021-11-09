@@ -1477,7 +1477,8 @@ MonoBehaviour:
   buttonLeave: {fileID: 643202239}
   playerName: {fileID: 55036115}
   maxPlayersPerRoom: 20
-  player: {fileID: 2085196571795794240, guid: 01146998d77c3fb4d9e1e2ee6b51ce03, type: 3}
+  player: {fileID: 2588846066390814426, guid: c2d55ecab7767764dbcb1f51404ac33c, type: 3}
+  exitDoor: {fileID: 569929901401157333, guid: e2458abe6e8e86d4e99c13f184a2f2bc, type: 3}
 --- !u!4 &1492656387
 Transform:
   m_ObjectHideFlags: 0

@@ -7,7 +7,11 @@ public class PlayerController : MonoBehaviourPun
 {
     public float turnSpeed = 180;
     public float tiltSpeed = 180;
-    public float walkSpeed = 1;
+    public float walkSpeed = 10;
+
+    public Rigidbody rb;
+
+    public CharacterController playerController;
 
     [SerializeField]
     private Transform fpcam;    // first person camera
@@ -16,20 +20,21 @@ public class PlayerController : MonoBehaviourPun
     void Start()
     {
         // Cursor.lockState = CursorLockMode.Confined;
-        if (!photonView.IsMine)
+        /*if (!photonView.IsMine)
         {
             this.gameObject.tag = "Enemy";
         }
         else
         {
             this.gameObject.tag = "Player";
-        }
+        }*/
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
+        /*if (photonView.IsMine)
         {
             float forward = Input.GetAxis("Vertical");
             float turn = Input.GetAxis("Horizontal") + Input.GetAxis("Mouse X");
@@ -38,15 +43,35 @@ public class PlayerController : MonoBehaviourPun
             transform.Rotate(new Vector3(0, turn * turnSpeed * Time.deltaTime, 0));
             if (fpcam != null)
                 fpcam.Rotate(new Vector3(-tilt * tiltSpeed * Time.deltaTime, 0));
+        }*/
+
+        if (photonView.IsMine)
+        {
+            float playerZ = Input.GetAxis("Vertical");
+            float playerX = Input.GetAxis("Horizontal");
+
+            Vector3 playerMovement = new Vector3(playerX, 0, playerZ);
+
+            playerController.Move(playerMovement * walkSpeed * Time.deltaTime);
         }
         
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "ExitDoor")
+        if (!photonView.IsMine)
         {
-            walkSpeed = 0;
+            return;
         }
+
+        
+
+        
+    }
+
+    [PunRPC]
+    void playerCollision()
+    {
+
     }
 }
