@@ -81,7 +81,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
              , 0);
 
         // Spawn Exit Door
-        PhotonNetwork.InstantiateRoomObject(exitDoor.name, new Vector3(Random.Range(-10, 10), 0.25f, Random.Range(-10, 10)), Quaternion.Euler(-90,0,0), 0);
+        PhotonNetwork.InstantiateRoomObject(exitDoor.name, new Vector3(-15.01f, 0.25f, Random.Range(-15.15f, 13.017f)), Quaternion.Euler(-90,0,90), 0);
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
