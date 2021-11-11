@@ -22,6 +22,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public GameObject exitDoor;
 
+    public GameObject keys;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +84,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         // Spawn Exit Door
         PhotonNetwork.InstantiateRoomObject(exitDoor.name, new Vector3(-15.01f, 0.25f, Random.Range(-15.15f, 13.017f)), Quaternion.Euler(-90,0,90), 0);
+
+        // Spawn Keys
+        for(int i = 0; i < 5; i++)
+        {
+            PhotonNetwork.InstantiateRoomObject(keys.name, new Vector3(Random.Range(-15f, 15f), 1.25f, Random.Range(-15f, 15f)), Quaternion.Euler(0, 0, 0), 0);
+        }
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
