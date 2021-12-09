@@ -24,6 +24,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public GameObject keys;
 
+    public GameObject rock;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +92,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.InstantiateRoomObject(keys.name, new Vector3(Random.Range(-15f, 15f), 1.25f, Random.Range(-15f, 15f)), Quaternion.Euler(0, 0, 0), 0);
         }
+
+        // Spawn Rock
+        PhotonNetwork.InstantiateRoomObject(rock.name, new Vector3(10.0f, 0.25f, 8.017f), Quaternion.Euler(0, 0, 0), 0);
     }
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)

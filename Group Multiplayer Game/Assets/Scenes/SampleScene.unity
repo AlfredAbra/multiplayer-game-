@@ -1480,6 +1480,7 @@ MonoBehaviour:
   player: {fileID: 2588846066390814426, guid: c2d55ecab7767764dbcb1f51404ac33c, type: 3}
   exitDoor: {fileID: 569929901401157333, guid: e2458abe6e8e86d4e99c13f184a2f2bc, type: 3}
   keys: {fileID: 5625977234021774614, guid: a047bd67cb4823846b11a1399d05f352, type: 3}
+  rock: {fileID: 128935683, guid: 8d931b3fb82717949a490ba2479926c4, type: 3}
 --- !u!4 &1492656387
 Transform:
   m_ObjectHideFlags: 0
