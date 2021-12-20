@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: -7065027698904917805}
   - component: {fileID: 4558143335169681310}
   - component: {fileID: 4200577966844909489}
+  - component: {fileID: 583111613207094740}
   m_Layer: 0
   m_Name: PlayerModel
   m_TagString: Untagged
@@ -178,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 449020843765978361}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 13ac8a65c82828c45b7e09caee08e370, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb10782774ce0044093cc097cc33a2a5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -276,6 +277,7 @@ MonoBehaviour:
   walkSpeed: 10
   rb: {fileID: 0}
   playerController: {fileID: 4200577966844909489}
+  playerAnim: {fileID: 0}
   fpcam: {fileID: 0}
 --- !u!143 &4200577966844909489
 CharacterController:
@@ -295,6 +297,33 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.91, z: 0}
+--- !u!114 &583111613207094740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449020843765978361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 0
+    Name: ForwardAndBack
+  - Type: 1
+    SynchronizeType: 0
+    Name: LeftAndRight
+  - Type: 1
+    SynchronizeType: 0
+    Name: Idle
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &464178067464737540
 GameObject:
   m_ObjectHideFlags: 0
