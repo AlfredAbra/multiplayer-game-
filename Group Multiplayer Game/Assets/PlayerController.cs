@@ -40,13 +40,18 @@ public class PlayerController : MonoBehaviourPun
 
             playerController.Move(playerMovement * walkSpeed * Time.deltaTime);
 
-            // Player Animations
+            if(playerX == 0 && playerZ == 0)
+            {
+                playerAnim.SetBool("isMoving", false);
+            }
+            else
+            {
+                playerAnim.SetBool("isMoving", true);
+            }
 
-            float playerDirectionZ = Vector3.Dot(playerMovement.normalized, transform.forward);
-            float playerDirectionX = Vector3.Dot(playerMovement.normalized, transform.right);
-
-            playerAnim.SetFloat("ForwardAndBack", playerDirectionZ, 0.1f, Time.deltaTime);
-            playerAnim.SetFloat("LeftAndRight", playerDirectionX, 0.1f, Time.deltaTime);
+            // Animations
+            playerAnim.SetFloat("PlayerVertical", Input.GetAxis("Vertical"));
+            playerAnim.SetFloat("PlayerHorizontal", Input.GetAxis("Horizontal"));
         }
         
     }
