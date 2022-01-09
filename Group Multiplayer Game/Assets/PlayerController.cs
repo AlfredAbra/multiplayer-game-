@@ -5,19 +5,19 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviourPun
 {
-    public float turnSpeed = 180;
-    public float tiltSpeed = 180;
     public float walkSpeed = 10;
 
     public CharacterController playerController;
 
-    //public Animator playerAnim;
+    bool isMoving;
+
+    public Animator playerAnim;
 
     // Start is called before the first frame update
     void Start()
     {
         // Cursor.lockState = CursorLockMode.Confined;
-        //playerAnim = GetComponent<Animator>();
+        playerAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviourPun
 
             playerController.Move(playerMovement * walkSpeed * Time.deltaTime);
 
+            playerAnim.SetFloat("PlayerHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
+            playerAnim.SetFloat("PlayerVertical", Input.GetAxis("Vertical"), 0.05f, Time.deltaTime);
         }
         
     }

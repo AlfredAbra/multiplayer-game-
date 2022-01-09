@@ -81,7 +81,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // Spawn's the player
         PhotonNetwork.Instantiate(player.name,
              new Vector3(Random.Range(-10, 10), 0.1f, Random.Range(-10, 10)),
-             Quaternion.Euler(0, Random.Range(-180, 180), 0)
+             Quaternion.identity
              , 0);
 
         // Spawn Exit Door
