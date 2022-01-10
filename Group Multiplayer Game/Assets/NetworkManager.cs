@@ -11,12 +11,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private Text nickname, status, room, players;
     [SerializeField]
-    private Button buttonPlay, buttonLeave;
+    private Button buttonPlay, buttonLeave, killerRole, survivorRole;
     [SerializeField]
     private InputField playerName;
 
     [SerializeField]
-    private byte maxPlayersPerRoom = 20;
+    private byte maxPlayersPerRoom = 5;
+
+    int killerCount = 0;
+
+    int survivorCount = 0;
 
     public GameObject player;
 
@@ -33,6 +37,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         buttonPlay.gameObject.SetActive(false);
         buttonLeave.gameObject.SetActive(false);
         playerName.gameObject.SetActive(false);
+        killerRole.gameObject.SetActive(true);
+        survivorRole.gameObject.SetActive(true);
 
         if (!PhotonNetwork.IsConnected)
             PhotonNetwork.ConnectUsingSettings();
@@ -108,6 +114,23 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         status.text = otherPlayer.NickName + " has just left.";
     }
 
+    public void PlayerRoleSelection()
+    {
+
+    }
+
+    public void KillerRole()
+    {
+        //killerCount++;
+        // Instantiate killer model for user that's chosen it.
+    }
+
+    public void SurvivorRole()
+    {
+        //survivorCount++;
+        // Instantiate survivor model for user that's chosen it.
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -131,6 +154,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
         else
             nickname.text = room.text = players.text = "";
+
+        if (killerCount == 1)
+        {
+            killerRole.gameObject.SetActive(false);
+        }
+
+        if (survivorCount == 4)
+        {
+            survivorRole.gameObject.SetActive(false);
+        }
     }
 
 }
