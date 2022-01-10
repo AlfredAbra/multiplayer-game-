@@ -27,16 +27,16 @@ public class PlayerController : MonoBehaviourPun
         if (photonView.IsMine)
         {
             // Player Input
-            float playerZ = Input.GetAxis("Vertical");
-            float playerX = Input.GetAxis("Horizontal");
+            float playerZ = Input.GetAxisRaw("Vertical");
+            float playerX = Input.GetAxisRaw("Horizontal");
 
             // Player Movement
-            Vector3 playerMovement = new Vector3(playerX, 0, playerZ);
+            Vector3 playerMovement = new Vector3(playerX, 0, playerZ).normalized;
 
             playerController.Move(playerMovement * walkSpeed * Time.deltaTime);
 
-            playerAnim.SetFloat("PlayerHorizontal", Input.GetAxis("Horizontal"), 0.02f, Time.deltaTime);
-            playerAnim.SetFloat("PlayerVertical", Input.GetAxis("Vertical"), 0.02f, Time.deltaTime);
+            playerAnim.SetFloat("PlayerHorizontal", Input.GetAxisRaw("Horizontal"), 0.08f, Time.deltaTime);
+            playerAnim.SetFloat("PlayerVertical", Input.GetAxisRaw("Vertical"), 0.08f, Time.deltaTime);
         }
         
     }
