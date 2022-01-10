@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviourPun
 
             playerController.Move(playerMovement * walkSpeed * Time.deltaTime);
 
-            playerAnim.SetFloat("PlayerHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
-            playerAnim.SetFloat("PlayerVertical", Input.GetAxis("Vertical"), 0.05f, Time.deltaTime);
+            playerAnim.SetFloat("PlayerHorizontal", Input.GetAxis("Horizontal"), 0.02f, Time.deltaTime);
+            playerAnim.SetFloat("PlayerVertical", Input.GetAxis("Vertical"), 0.02f, Time.deltaTime);
         }
         
     }
