@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -60,7 +61,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PlayerPrefs.SetString("PlayerName", playerName.text);
         PhotonNetwork.NickName = playerName.text;
 
-        PhotonNetwork.JoinRandomRoom();
+        SceneManager.LoadScene("RoleSelectionScene");
     }
 
     public void Leave()
