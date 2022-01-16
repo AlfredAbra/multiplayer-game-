@@ -32,7 +32,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject rock;
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         status.text = "Connecting...";
         buttonPlay.gameObject.SetActive(false);
@@ -43,17 +43,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         if (!PhotonNetwork.IsConnected)
             PhotonNetwork.ConnectUsingSettings();
-    }
-
-    public override void OnConnectedToMaster()
-    {
-        Debug.Log("OnConnectedToMaster was called by PUN.");
-        status.text = "Connected to Photon.";
-        buttonPlay.gameObject.SetActive(true);
-        playerName.gameObject.SetActive(true);
-        buttonLeave.gameObject.SetActive(false);
-
-        playerName.text = PlayerPrefs.GetString("PlayerName");
     }
 
     public void Play()
@@ -165,6 +154,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             survivorRole.gameObject.SetActive(false);
         }
-    }
+    }*/
 
 }

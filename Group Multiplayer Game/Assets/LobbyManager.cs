@@ -7,30 +7,60 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    public GameObject createRoom;
-    public GameObject room;
-    public InputField addRoomName;
+    public GameObject createRoomPanel;
+    public GameObject roomPanel;
+    public InputField roomNameInput;
     public Text nameOfRoom;
 
+    List<RoomListItem> roomList = new List<RoomListItem>();
+    public RoomListItem room;
+    public Transform roomListContent;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        PhotonNetwork.JoinLobby(); // This joins the player into a lobby after the play button has been clicked in the main menu scene.
+        PhotonNetwork.JoinLobby(); // This joins the player into a lobby after the play button has been clicked in the main menu scene. This then allows the player to create a room.
+        createRoomPanel.SetActive(true);
+        roomPanel.SetActive(false);
     }
 
-    public void CreateRoom()
+    public void CreateRoomClicked()
     {
-        if(addRoomName.text.Length >= 1) // This makes sure the room name input field is not left empty when creating a room.
-        {
-            PhotonNetwork.CreateRoom(addRoomName.text, new RoomOptions(){ MaxPlayers = 4 }); // This creates a room with the name inputted and set's the maximum players count for the room to no more than 4.
+        if(roomNameInput.text.Length >= 1){
+            PhotonNetwork.CreateRoom(roomNameInput.text, new RoomOptions() { MaxPlayers = 4 }); // This creates a room with the name that was in the input field and the maximum player count for the room is set as 4.
         }
     }
 
     public override void OnJoinedRoom()
     {
-        createRoom.SetActive(false); // This stops the room creation panel from being displayed.
-        room.SetActive(true); // This then displays the room panel when a room has been joined.
-        nameOfRoom.text = "Room: " + PhotonNetwork.CurrentRoom.Name; // This sets the nameOfRoom text element to display the name of the current room the player is in.
+        createRoomPanel.SetActive(false); // This stops displaying the createRoomPanel game object.
+        roomPanel.SetActive(true); // This then displays the roomPanel game object.
+        nameOfRoom.text = PhotonNetwork.CurrentRoom.Name; // This sets the name of the room to be whatever the current name of the room that has been joined is.
     }
 
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        UpdateServerRooms(roomList);
+    }
+
+    public void UpdateServerRooms(List<RoomInfo> rooms)
+    {
+        foreach (RoomListItem createdRoom in roomList) // This for each loop ensures that all previous rooms in the roomList are removed and the list is cleared completely.
+        {
+            Destroy(createdRoom.gameObject);
+        }
+        roomList.Clear();
+
+        foreach (RoomInfo gameRoom in rooms)
+        {
+            RoomListItem newRoom = Instantiate(room, roomListContent, false);
+            newRoom.RoomName(gameRoom.Name);
+            roomList.Add(newRoom);
+        }
+    }
+
+    public void JoiningRoom(string name)
+    {
+        PhotonNetwork.JoinRoom(name);
+    }
 }
