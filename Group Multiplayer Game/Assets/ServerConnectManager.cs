@@ -45,6 +45,6 @@ public class ServerConnectManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Yep, you managed to join a room!");
 
-        SceneManager.LoadScene("PlayerRoleSelectionScene");
+        SceneManager.LoadScene("Map");
     }
 }
