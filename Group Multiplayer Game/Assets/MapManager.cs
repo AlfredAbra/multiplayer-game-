@@ -9,6 +9,8 @@ public class MapManager : MonoBehaviourPunCallbacks
     public int killerCount = 0;
     public int survivorCount = 0;
 
+    //public PhotonView pv;
+
     public GameObject killerButton;
     public GameObject survivorButton;
     public GameObject playButton;
@@ -25,25 +27,34 @@ public class MapManager : MonoBehaviourPunCallbacks
         int randNumPlayer = Random.Range(0, spawnPointsSurvivor.Length);
         int randNumKiller = Random.Range(0, spawnPointsKiller.Length);
 
+        //pv = GetComponent<PhotonView>();
+
         playButton.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(killerCount == 1)
+       /*if(killerCount >= 1)
         {
-            killerButton.SetActive(false); // This stops displaying the button to become a killer if someone is already a killer in the room.
-        }
-        
+            pv.RPC("killerLimitReached", RpcTarget.AllBufferedViaServer);
+        }*/
     }
 
-    public void KillerClicked()
+    /*public void KillerClicked()
     {
-        killerCount++;
+        int randNumKiller = Random.Range(0, spawnPointsSurvivor.Length);
+        Transform killerSpawns = spawnPointsSurvivor[randNumKiller];
+        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), killerSpawns.position, Quaternion.identity);
 
-        mainPanel.SetActive(false);
-    }
+        killerCount++;
+    }*/
+
+    /*[PunRPC]
+    public void killerLimitReached()
+    {
+        killerButton.SetActive(false); // This stops displaying the button to become a killer if someone is already a killer in the room.
+    }*/
 
     public void SurvivorClicked()
     {

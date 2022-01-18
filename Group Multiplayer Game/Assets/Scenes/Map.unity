@@ -5571,6 +5571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7539c589bd5865b448db0c047b8ee37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killerCount: 0
+  survivorCount: 0
   killerButton: {fileID: 1703548417}
   survivorButton: {fileID: 459311689}
   playButton: {fileID: 1229066202}
@@ -20189,6 +20191,8 @@ GameObject:
   - component: {fileID: 1703548421}
   - component: {fileID: 1703548420}
   - component: {fileID: 1703548419}
+  - component: {fileID: 1703548422}
+  - component: {fileID: 1703548423}
   m_Layer: 5
   m_Name: KillerButton
   m_TagString: Untagged
@@ -20310,6 +20314,45 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703548417}
   m_CullTransparentMesh: 1
+--- !u!114 &1703548422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703548417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 1
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 1703548423}
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1703548423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703548417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &1740786779
 GameObject:
   m_ObjectHideFlags: 0
