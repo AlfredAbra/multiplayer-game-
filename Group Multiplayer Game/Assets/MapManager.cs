@@ -2,6 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using System.IO;
 
 public class MapManager : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class MapManager : MonoBehaviour
 
     public GameObject mainPanel;
 
-    public GameObject[] characterModels;
+    public GameObject killerModel;
+    public GameObject survivorModel;
     public Transform[] spawnPointsSurvivor;
     public Transform[] spawnPointsKiller;
 
@@ -48,7 +50,9 @@ public class MapManager : MonoBehaviour
 
     public void SurvivorClicked()
     {
-
+        int randNumSurvivor = Random.Range(0, spawnPointsSurvivor.Length);
+        Transform survivorSpawns = spawnPointsSurvivor[randNumSurvivor];
+        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "SurvivorModel"), survivorSpawns.position, Quaternion.identity);
     }
 
     public void PlayClicked()
