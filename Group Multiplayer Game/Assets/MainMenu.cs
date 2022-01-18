@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void PlayGame ()
 	{
-		SceneManager.LoadScene("StartMenu");
+		SceneManager.LoadScene("ConnectToServerScene");
 	}
 
 	public void QuitGame ()

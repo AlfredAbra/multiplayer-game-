@@ -63,4 +63,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinRoom(name);
     }
+
+    public void PlayerLeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        createRoomPanel.SetActive(true);
+        roomPanel.SetActive(false);
+    }
 }
