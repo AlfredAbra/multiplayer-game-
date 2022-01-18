@@ -1,4 +1,6 @@
 using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +8,9 @@ public class ServerConnectManager : MonoBehaviourPunCallbacks
 {
     public InputField playerName;
     public Text playButtonText;
+
+    [SerializeField]
+    private byte maxPlayerCount = 4;
 
     public void PlayClicked()
     {
@@ -20,6 +25,26 @@ public class ServerConnectManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        SceneManager.LoadScene("RoomsScene");
+        Debug.Log("You've connected to Photon!");
+        playerJoinsRandomRoom();
+    }
+
+    public void playerJoinsRandomRoom()
+    {
+        PhotonNetwork.JoinRandomRoom(); // This will join the player into a random room if there are any rooms with spaces.
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        Debug.Log("No rooms available, creating new room!");
+
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayerCount }); // This will create a new room with a max player count of 4.
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("Yep, you managed to join a room!");
+
+        SceneManager.LoadScene("PlayerRoleSelectionScene");
     }
 }

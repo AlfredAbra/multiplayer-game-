@@ -17,7 +17,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private InputField playerName;
 
     [SerializeField]
-    private byte maxPlayersPerRoom = 5;
+    private byte maxPlayersPerRoom = 4;
 
     int killerCount = 0;
 
@@ -32,7 +32,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject rock;
 
     // Start is called before the first frame update
-    /*void Start()
+    void Start()
     {
         status.text = "Connecting...";
         buttonPlay.gameObject.SetActive(false);
@@ -49,8 +49,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         PlayerPrefs.SetString("PlayerName", playerName.text);
         PhotonNetwork.NickName = playerName.text;
-
-        SceneManager.LoadScene("RoleSelectionScene");
     }
 
     public void Leave()
@@ -154,6 +152,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             survivorRole.gameObject.SetActive(false);
         }
-    }*/
+    }
 
 }
