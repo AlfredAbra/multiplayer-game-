@@ -7,6 +7,14 @@ public class KillerController : MonoBehaviourPun
 {
     public float walkSpeed = 10;
 
+    public float mouseSens = 300f;
+
+    public float rotClamp = 90f;
+
+    float rotationX;
+
+    float rotationY;
+
     public CharacterController killerController;
 
     public Animator killerAnim;
@@ -14,8 +22,13 @@ public class KillerController : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        // Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
         killerAnim = GetComponent<Animator>();
+
+        Vector3 mouseRotation = transform.localRotation.eulerAngles;
+
+        rotationX = mouseRotation.x;
+        rotationY = mouseRotation.y;
     }
 
     // Update is called once per frame
@@ -35,6 +48,18 @@ public class KillerController : MonoBehaviourPun
 
             killerAnim.SetFloat("KillerHorizontal", Input.GetAxisRaw("Horizontal"), 0.08f, Time.deltaTime);
             killerAnim.SetFloat("KillerVertical", Input.GetAxisRaw("Vertical"), 0.08f, Time.deltaTime);
+
+            // Mouse Input
+            float lookX = Input.GetAxis("Mouse X");
+            float lookY = Input.GetAxis("Mouse Y");
+
+            rotationX -= lookY * mouseSens * Time.deltaTime;
+            rotationY += lookX * mouseSens * Time.deltaTime;
+
+            rotationX = Mathf.Clamp(rotationX, -rotClamp, rotClamp);
+
+            Quaternion killerRotation = Quaternion.Euler(rotationX, rotationY, 0f);
+            transform.rotation = killerRotation;
         }
         
     }
