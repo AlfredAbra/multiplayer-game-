@@ -43,4 +43,15 @@ public class KillerController : MonoBehaviourPun
             killerAnim.SetFloat("KillerHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
         }
     }
+
+    public void OnCollisionEnter(Collision survivor)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (survivor.gameObject.name == "SurvivorModel")
+            {
+                PhotonNetwork.Destroy(survivor.gameObject);
+            }
+        }
+    }
 }

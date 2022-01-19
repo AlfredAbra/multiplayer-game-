@@ -67,4 +67,9 @@ public class MapManager : MonoBehaviourPunCallbacks
 
         mainPanel.SetActive(false);
     }
+
+    public void QuitClicked()
+    {
+        Application.Quit();
+    }
 }

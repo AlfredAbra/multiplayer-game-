@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class KeyCountManager : MonoBehaviour
 {
-    int keyCount = 0;
+    public int keyCount = 0;
 
     public Text keyCountText;
 
@@ -19,7 +19,7 @@ public class KeyCountManager : MonoBehaviour
 
     public void KeyCountTracker()
     {
-        view.RPC("KeyCountTrackerRPC", RpcTarget.All);
+        view.RPC("KeyCountTrackerRPC", RpcTarget.AllBufferedViaServer);
     }
 
     [PunRPC]

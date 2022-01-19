@@ -7,9 +7,19 @@ public class Collectables : MonoBehaviour
 {
     KeyCountManager keys;
 
+    public GameObject winPanel;
+
+    PhotonView view;
+
     private void Start()
     {
         keys = FindObjectOfType<KeyCountManager>();
+        view = GetComponent<PhotonView>();
+    }
+
+    private void Update()
+    {
+        WinGame();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,6 +31,20 @@ public class Collectables : MonoBehaviour
                 keys.KeyCountTracker();
                 PhotonNetwork.Destroy(this.gameObject);
             }
+        }
+    }
+
+    public void WinGame()
+    {
+        view.RPC("WinGameRPC", RpcTarget.AllBufferedViaServer);
+    }
+
+    [PunRPC]
+    void WinGameRPC()
+    {
+        if(keys.keyCount == 4)
+        {
+            winPanel.SetActive(true);
         }
     }
 }
