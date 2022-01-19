@@ -43,6 +43,9 @@ MonoBehaviour:
   - PlayClicked
   - KillerClicked
   - killerLimitReached
+  - OnTriggerEnter
+  - CollectableCollisionRPC
+  - killPlayerRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

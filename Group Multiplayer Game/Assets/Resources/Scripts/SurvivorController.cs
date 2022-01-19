@@ -5,44 +5,46 @@ public class SurvivorController : MonoBehaviourPun
 {
     public float walkSpeed = 10;
 
-    Vector2 survivorRotation;
-
-    public Transform survivor;
+    Vector3 survivorMovement;
 
     public CharacterController survivorController;
 
     public Animator survivorAnim;
 
-    Vector3 survivorMovement;
+    PhotonView view;
+
+    bool isMoving;
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Confined;
         survivorAnim = GetComponent<Animator>();
+        view = GetComponent<PhotonView>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
+        if (view.IsMine)
         {
+
             // Player Input
             float survivorZ = Input.GetAxisRaw("Vertical");
+            float survivorX = Input.GetAxisRaw("Horizontal");
 
             // Player Movement
-            survivorMovement = survivorController.transform.forward * survivorZ;
+            survivorMovement = new Vector3(survivorX,0f,survivorZ);
 
             survivorController.Move(survivorMovement * walkSpeed * Time.deltaTime);
 
-            // Mouse Control
-            survivorRotation.x += Input.GetAxis("Mouse X");
-
-            survivor.localRotation = Quaternion.Euler(0f, survivorRotation.x, 0f);
-
             // Animations
-            survivorAnim.SetFloat("SurvivorVertical", Input.GetAxis("Vertical"), 0.05f, Time.deltaTime);
+            survivorAnim.SetFloat("SurvivorVertical", survivorZ, 0.05f, Time.deltaTime);
+            survivorAnim.SetFloat("SurvivorHorizontal", survivorX, 0.05f, Time.deltaTime);
+
         }
         
     }
+
 }

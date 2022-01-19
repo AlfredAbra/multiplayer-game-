@@ -5,8 +5,6 @@ public class KillerController : MonoBehaviourPun
 {
     public float walkSpeed = 10;
 
-    Vector2 killerRotation;
-
     public Transform killer;
 
     public CharacterController killerController;
@@ -15,34 +13,34 @@ public class KillerController : MonoBehaviourPun
 
     Vector3 killerMovement;
 
+    PhotonView view;
+
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Confined;
         killerAnim = GetComponent<Animator>();
+        view = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
+        if (view.IsMine)
         {
+
             // Player Input
             float killerZ = Input.GetAxisRaw("Vertical");
+            float killerX = Input.GetAxisRaw("Horizontal");
 
             // Player Movement
-            killerMovement = killerController.transform.forward * killerZ;
+            killerMovement = new Vector3(killerX, 0f, killerZ);
 
             killerController.Move(killerMovement * walkSpeed * Time.deltaTime);
 
-            // Mouse Control
-            killerRotation.x += Input.GetAxis("Mouse X");
-
-            killer.localRotation = Quaternion.Euler(0f, killerRotation.x, 0f);
-
             // Animations
             killerAnim.SetFloat("KillerVertical", Input.GetAxis("Vertical"), 0.05f, Time.deltaTime);
+            killerAnim.SetFloat("KillerHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
         }
-        
     }
 }

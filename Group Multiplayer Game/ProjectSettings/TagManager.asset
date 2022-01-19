@@ -5,9 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - ExitDoor
-  - KillerCamera
-  - SurvivorCamera
   - Survivor
+  - Collectable
+  - SurvivorCamera
+  - KillerCamera
+  - Killer
   layers:
   - Default
   - TransparentFX
