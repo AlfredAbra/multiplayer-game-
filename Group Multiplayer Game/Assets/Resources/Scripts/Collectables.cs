@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
@@ -7,19 +5,12 @@ public class Collectables : MonoBehaviour
 {
     KeyCountManager keys;
 
-    public GameObject winPanel;
-
-    PhotonView view;
+    //PhotonView view;
 
     private void Start()
     {
         keys = FindObjectOfType<KeyCountManager>();
-        view = GetComponent<PhotonView>();
-    }
-
-    private void Update()
-    {
-        WinGame();
+        //view = GetComponent<PhotonView>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,17 +25,4 @@ public class Collectables : MonoBehaviour
         }
     }
 
-    public void WinGame()
-    {
-        view.RPC("WinGameRPC", RpcTarget.AllBufferedViaServer);
-    }
-
-    [PunRPC]
-    void WinGameRPC()
-    {
-        if(keys.keyCount == 3)
-        {
-            winPanel.SetActive(true);
-        }
-    }
 }

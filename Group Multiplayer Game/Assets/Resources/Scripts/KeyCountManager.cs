@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class KeyCountManager : MonoBehaviour
 {
-    public int keyCount = 0;
+    int keyCount = 0;
 
     public Text keyCountText;
 
     PhotonView view;
+
+    public GameObject winPanel;
 
     void Start()
     {
@@ -19,13 +21,18 @@ public class KeyCountManager : MonoBehaviour
 
     public void KeyCountTracker()
     {
-        view.RPC("KeyCountTrackerRPC", RpcTarget.AllBufferedViaServer);
+        view.RPC("KeyCountTrackerRPC", RpcTarget.All);
     }
 
     [PunRPC]
     void KeyCountTrackerRPC()
     {
         keyCount++;
-        keyCountText.text = keyCount.ToString();
+        keyCountText.text = "Key Count: " + keyCount.ToString();
+
+        if (keyCount == 4)
+        {
+            winPanel.SetActive(true);
+        }
     }
 }

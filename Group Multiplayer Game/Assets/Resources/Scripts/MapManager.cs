@@ -7,12 +7,7 @@ public class MapManager : MonoBehaviourPunCallbacks
     public int killerCount = 0;
     public int survivorCount = 0;
 
-    public GameObject killerButton;
-    public GameObject survivorButton;
-    public GameObject playButton;
-
     public GameObject mainPanel;
-    public GameObject winPanel;
 
     public GameObject killerModel;
     public GameObject survivorModel;
@@ -27,18 +22,15 @@ public class MapManager : MonoBehaviourPunCallbacks
         int randNumKiller = Random.Range(0, spawnPointsKiller.Length);
 
         view = GetComponent<PhotonView>();
-
-        winPanel.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         /*if(killerCount >= 1)
          {
              pv.RPC("killerLimitReached", RpcTarget.AllBufferedViaServer);
          }*/
-
     }
 
     public void KillerClicked()
