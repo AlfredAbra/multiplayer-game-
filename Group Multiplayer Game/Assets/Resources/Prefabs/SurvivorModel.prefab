@@ -94,6 +94,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 1
     Name: SurvivorVertical
+  - Type: 1
+    SynchronizeType: 0
+    Name: SurvivorHorizontal
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -110,12 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 10
-  mouseSens: 300
-  survivor: {fileID: 6322265956425697302}
   survivorController: {fileID: -4994748710109683538}
   survivorAnim: {fileID: -3167944177697905006}
-  survivorCam: {fileID: 4114308806984524174}
-  sCamera: {fileID: 6133393968283652582}
+  winPanel: {fileID: 0}
 --- !u!1 &8832401557660268556
 GameObject:
   m_ObjectHideFlags: 0

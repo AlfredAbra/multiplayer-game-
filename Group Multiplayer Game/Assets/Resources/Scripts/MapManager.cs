@@ -18,10 +18,14 @@ public class MapManager : MonoBehaviourPunCallbacks
     public Transform[] spawnPointsSurvivor;
     public Transform[] spawnPointsKiller;
 
+    PhotonView view;
+
     void Start()
     {
         int randNumPlayer = Random.Range(0, spawnPointsSurvivor.Length);
         int randNumKiller = Random.Range(0, spawnPointsKiller.Length);
+
+        view = GetComponent<PhotonView>();
 
         playButton.SetActive(false);
     }

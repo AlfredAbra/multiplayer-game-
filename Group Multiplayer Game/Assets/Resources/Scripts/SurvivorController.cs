@@ -13,8 +13,6 @@ public class SurvivorController : MonoBehaviourPun
 
     PhotonView view;
 
-    bool isMoving;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +42,7 @@ public class SurvivorController : MonoBehaviourPun
             survivorAnim.SetFloat("SurvivorHorizontal", survivorX, 0.05f, Time.deltaTime);
 
         }
-        
     }
 
 }
+

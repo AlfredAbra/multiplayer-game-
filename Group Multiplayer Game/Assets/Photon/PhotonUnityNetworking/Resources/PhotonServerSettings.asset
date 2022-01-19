@@ -46,6 +46,9 @@ MonoBehaviour:
   - OnTriggerEnter
   - CollectableCollisionRPC
   - killPlayerRPC
+  - CollectableCollisionsRPC
+  - WinGameRPC
+  - KeyCountTrackerRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
