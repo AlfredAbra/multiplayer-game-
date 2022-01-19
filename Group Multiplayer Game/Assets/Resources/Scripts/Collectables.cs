@@ -42,7 +42,7 @@ public class Collectables : MonoBehaviour
     [PunRPC]
     void WinGameRPC()
     {
-        if(keys.keyCount == 4)
+        if(keys.keyCount == 3)
         {
             winPanel.SetActive(true);
         }

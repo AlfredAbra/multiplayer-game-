@@ -12,6 +12,7 @@ public class MapManager : MonoBehaviourPunCallbacks
     public GameObject playButton;
 
     public GameObject mainPanel;
+    public GameObject winPanel;
 
     public GameObject killerModel;
     public GameObject survivorModel;
@@ -27,7 +28,7 @@ public class MapManager : MonoBehaviourPunCallbacks
 
         view = GetComponent<PhotonView>();
 
-        playButton.SetActive(false);
+        winPanel.SetActive(false);
     }
 
     // Update is called once per frame

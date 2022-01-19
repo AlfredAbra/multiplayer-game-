@@ -115,7 +115,6 @@ MonoBehaviour:
   walkSpeed: 10
   survivorController: {fileID: -4994748710109683538}
   survivorAnim: {fileID: -3167944177697905006}
-  winPanel: {fileID: 0}
 --- !u!1 &8832401557660268556
 GameObject:
   m_ObjectHideFlags: 0
