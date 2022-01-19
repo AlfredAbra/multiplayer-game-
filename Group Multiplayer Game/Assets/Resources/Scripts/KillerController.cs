@@ -44,14 +44,4 @@ public class KillerController : MonoBehaviourPun
         }
     }
 
-    public void OnCollisionEnter(Collision survivor)
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (survivor.gameObject.name == "SurvivorModel")
-            {
-                PhotonNetwork.Destroy(survivor.gameObject);
-            }
-        }
-    }
 }

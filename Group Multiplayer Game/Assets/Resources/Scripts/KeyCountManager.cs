@@ -30,7 +30,7 @@ public class KeyCountManager : MonoBehaviour
         keyCount++;
         keyCountText.text = "Key Count: " + keyCount.ToString();
 
-        if (keyCount == 4)
+        if (keyCount == 5)
         {
             winPanel.SetActive(true);
         }
