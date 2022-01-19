@@ -41,14 +41,16 @@ public class MapManager : MonoBehaviourPunCallbacks
         }*/
     }
 
-    /*public void KillerClicked()
+    public void KillerClicked()
     {
         int randNumKiller = Random.Range(0, spawnPointsSurvivor.Length);
         Transform killerSpawns = spawnPointsSurvivor[randNumKiller];
-        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), killerSpawns.position, Quaternion.identity);
+        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "KillerModel"), killerSpawns.position, Quaternion.identity);
 
         killerCount++;
-    }*/
+
+        mainPanel.SetActive(false);
+    }
 
     /*[PunRPC]
     public void killerLimitReached()
