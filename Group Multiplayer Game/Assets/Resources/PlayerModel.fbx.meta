@@ -21,6 +21,9 @@ ModelImporter:
   - first:
       74: 6405021603225867621
     second: SurvivorRunningLeft
+  - first:
+      74: -6250465288823304103
+    second: SurvivorRunningBackwards
   externalObjects:
   - first:
       type: UnityEngine:Texture2D
@@ -140,6 +143,35 @@ ModelImporter:
       lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 90
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SurvivorRunningBackwards
+      takeName: mixamo.com
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: -180
       level: 0
       cycleOffset: 0
       loop: 0

@@ -36,6 +36,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 1
     Name: KillerVertical
+  - Type: 1
+    SynchronizeType: 0
+    Name: KillerHorizontal
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -68,12 +71,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 10
-  mouseSens: 300
   killer: {fileID: 2360460365901512217}
   killerController: {fileID: 7193648837587452899}
   killerAnim: {fileID: 8512409018366387299}
-  killerCamTransform: {fileID: 6909230336548613165}
-  killerCam: {fileID: 4768364244262960351}
 --- !u!114 &-1818135082864690558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +190,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a388ddb54019ac946bb74cb66c4496ee, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a388ddb54019ac946bb74cb66c4496ee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a388ddb54019ac946bb74cb66c4496ee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a388ddb54019ac946bb74cb66c4496ee, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a388ddb54019ac946bb74cb66c4496ee, type: 3}
       propertyPath: m_LocalPosition.x
