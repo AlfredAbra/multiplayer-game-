@@ -5,10 +5,6 @@ public class SurvivorController : MonoBehaviourPun
 {
     public float walkSpeed = 10;
 
-    Vector3 survivorMovement;
-
-    public CharacterController survivorController;
-
     public Animator survivorAnim;
 
     PhotonView view;
@@ -21,10 +17,12 @@ public class SurvivorController : MonoBehaviourPun
 
     public Camera survivorCamera;
 
+    public CharacterController survivorCC;
+
     // Start is called before the first frame update
     void Start()
     {
-        //Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Confined;
         survivorAnim = GetComponent<Animator>();
         view = GetComponent<PhotonView>();
 
@@ -42,16 +40,15 @@ public class SurvivorController : MonoBehaviourPun
 
             // Player Input
             float survivorZ = Input.GetAxisRaw("Vertical");
-            //float survivorX = Input.GetAxisRaw("Horizontal");
+            float survivorX = Input.GetAxisRaw("Horizontal");
 
-            float survivorTurn = Input.GetAxis("Mouse X");
+            Vector3 survivorMovement = new Vector3(survivorX, 0, survivorZ);
+
+            survivorCC.Move(survivorMovement * walkSpeed * Time.deltaTime);
+            
+            /*float survivorTurn = Input.GetAxis("Mouse X");
 
             float mouseMovementY = Input.GetAxis("Mouse Y");
-
-            /*// Player Movement
-            survivorMovement = new Vector3(survivorX,0f,survivorZ);
-
-            survivorController.Move(survivorMovement * walkSpeed * Time.deltaTime);*/
 
             transform.Translate(new Vector3(0, 0, survivorZ * walkSpeed * Time.deltaTime));
             transform.Rotate(new Vector3(0, survivorTurn * survivorTurnSpeed * Time.deltaTime, 0));
@@ -59,11 +56,13 @@ public class SurvivorController : MonoBehaviourPun
             if (survivorCam != null)
             {
                 survivorCam.Rotate(new Vector3(-mouseMovementY * mouseSens * Time.deltaTime, 0));
-            }
+            }*/
+
+            
 
             // Animations
             survivorAnim.SetFloat("SurvivorVertical", Input.GetAxis("Vertical"), 0.05f, Time.deltaTime);
-            //survivorAnim.SetFloat("SurvivorHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
+            survivorAnim.SetFloat("SurvivorHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
 
         }
     }

@@ -1,20 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!136 &438799694549729118
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3137278991157879971}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.96, z: 0.15}
---- !u!143 &7193648837587452899
+--- !u!143 &-4181397827919755426
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23,15 +9,15 @@ CharacterController:
   m_GameObject: {fileID: 3137278991157879971}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.8
-  m_Radius: 0.5
+  m_Radius: 0.53
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.96, z: 0.15}
+  m_Center: {x: -0.04, y: 0.91, z: 0.2}
 --- !u!114 &-7837645828069037107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,10 +56,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 10
   killer: {fileID: 2360460365901512217}
-  killerController: {fileID: 7193648837587452899}
   killerAnim: {fileID: 8512409018366387299}
   killerCam: {fileID: 6909230336548613165}
   killerCamera: {fileID: 4768364244262960351}
+  killerCC: {fileID: -4181397827919755426}
 --- !u!114 &-1818135082864690558
 MonoBehaviour:
   m_ObjectHideFlags: 0

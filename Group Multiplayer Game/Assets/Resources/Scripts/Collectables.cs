@@ -17,7 +17,7 @@ public class Collectables : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient) // This will make sure that it is only executed once each time the collision happens.
         {
-            if (other.gameObject.tag == "Survivor")
+            if (other.tag == "Survivor")
             {
                 keys.KeyCountTracker();
                 PhotonNetwork.Destroy(this.gameObject);
