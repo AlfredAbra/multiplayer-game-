@@ -13,6 +13,14 @@ public class SurvivorController : MonoBehaviourPun
 
     PhotonView view;
 
+    public Transform survivorCam;
+
+    float mouseSens = 300f;
+
+    float survivorTurnSpeed = 300f;
+
+    public Camera survivorCamera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,38 +28,43 @@ public class SurvivorController : MonoBehaviourPun
         survivorAnim = GetComponent<Animator>();
         view = GetComponent<PhotonView>();
 
+        if (!photonView.IsMine)
+        {
+            survivorCamera.enabled = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (view.IsMine)
+        if (photonView.IsMine)
         {
 
             // Player Input
             float survivorZ = Input.GetAxisRaw("Vertical");
-            float survivorX = Input.GetAxisRaw("Horizontal");
+            //float survivorX = Input.GetAxisRaw("Horizontal");
 
-            // Player Movement
+            float survivorTurn = Input.GetAxis("Mouse X");
+
+            float mouseMovementY = Input.GetAxis("Mouse Y");
+
+            /*// Player Movement
             survivorMovement = new Vector3(survivorX,0f,survivorZ);
 
-            survivorController.Move(survivorMovement * walkSpeed * Time.deltaTime);
+            survivorController.Move(survivorMovement * walkSpeed * Time.deltaTime);*/
+
+            transform.Translate(new Vector3(0, 0, survivorZ * walkSpeed * Time.deltaTime));
+            transform.Rotate(new Vector3(0, survivorTurn * survivorTurnSpeed * Time.deltaTime, 0));
+
+            if (survivorCam != null)
+            {
+                survivorCam.Rotate(new Vector3(-mouseMovementY * mouseSens * Time.deltaTime, 0));
+            }
 
             // Animations
-            survivorAnim.SetFloat("SurvivorVertical", survivorZ, 0.05f, Time.deltaTime);
-            survivorAnim.SetFloat("SurvivorHorizontal", survivorX, 0.05f, Time.deltaTime);
+            survivorAnim.SetFloat("SurvivorVertical", Input.GetAxis("Vertical"), 0.05f, Time.deltaTime);
+            //survivorAnim.SetFloat("SurvivorHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
 
-        }
-    }
-
-    public void OnCollisionEnter(Collision survivor)
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (survivor.gameObject.name == "SurvivorModel")
-            {
-                PhotonNetwork.Destroy(this.gameObject);
-            }
         }
     }
 

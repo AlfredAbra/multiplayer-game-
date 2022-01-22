@@ -31,6 +31,7 @@ public class MapManager : MonoBehaviourPunCallbacks
          {
              pv.RPC("killerLimitReached", RpcTarget.AllBufferedViaServer);
          }*/
+        
     }
 
     public void KillerClicked()

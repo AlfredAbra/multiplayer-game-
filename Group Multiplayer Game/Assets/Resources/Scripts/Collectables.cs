@@ -15,7 +15,7 @@ public class Collectables : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (PhotonNetwork.IsMasterClient) // This will make sure that it is only executed once each team the collision happens.
+        if (PhotonNetwork.IsMasterClient) // This will make sure that it is only executed once each time the collision happens.
         {
             if (other.gameObject.tag == "Survivor")
             {
