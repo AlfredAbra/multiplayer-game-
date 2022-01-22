@@ -22,7 +22,7 @@ public class SurvivorController : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
         survivorAnim = GetComponent<Animator>();
         view = GetComponent<PhotonView>();
 
@@ -42,23 +42,9 @@ public class SurvivorController : MonoBehaviourPun
             float survivorZ = Input.GetAxisRaw("Vertical");
             float survivorX = Input.GetAxisRaw("Horizontal");
 
-            Vector3 survivorMovement = new Vector3(survivorX, 0, survivorZ);
+            Vector3 survivorMovement = transform.right * survivorX + transform.forward * survivorZ;
 
-            survivorCC.Move(survivorMovement * walkSpeed * Time.deltaTime);
-            
-            /*float survivorTurn = Input.GetAxis("Mouse X");
-
-            float mouseMovementY = Input.GetAxis("Mouse Y");
-
-            transform.Translate(new Vector3(0, 0, survivorZ * walkSpeed * Time.deltaTime));
-            transform.Rotate(new Vector3(0, survivorTurn * survivorTurnSpeed * Time.deltaTime, 0));
-
-            if (survivorCam != null)
-            {
-                survivorCam.Rotate(new Vector3(-mouseMovementY * mouseSens * Time.deltaTime, 0));
-            }*/
-
-            
+            survivorCC.Move(survivorMovement * walkSpeed * Time.deltaTime);        
 
             // Animations
             survivorAnim.SetFloat("SurvivorVertical", Input.GetAxis("Vertical"), 0.05f, Time.deltaTime);
