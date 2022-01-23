@@ -23,6 +23,7 @@ public class SurvivorController : MonoBehaviourPun, IPunObservable
 
     MapManager mapManager;
 
+
     // Start is called before the first frame update
     void Start()
     {

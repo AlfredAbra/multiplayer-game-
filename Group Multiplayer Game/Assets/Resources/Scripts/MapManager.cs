@@ -4,13 +4,17 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using Photon.Realtime;
 
-public class MapManager : MonoBehaviourPunCallbacks
+public class MapManager : MonoBehaviourPun, IPunObservable
 {
     public int killerCount = 0;
     public int survivorCount = 0;
+    public int playerCount = 0;
 
     public GameObject mainPanel;
     public GameObject survivorDeadPanel;
+    public GameObject killerWinPanel;
+
+    public GameObject killerButton;
 
     public Camera mainCamera;
 
@@ -18,8 +22,6 @@ public class MapManager : MonoBehaviourPunCallbacks
     public GameObject survivorModel;
     public Transform[] spawnPointsSurvivor;
     public Transform[] spawnPointsKiller;
-
-    PhotonView view;
 
     SurvivorController survivorScript;
 
@@ -34,16 +36,16 @@ public class MapManager : MonoBehaviourPunCallbacks
 
         mainCamera.enabled = false;
 
-        view = GetComponent<PhotonView>();
+        killerWinPanel.SetActive(false);
     }
 
     // Update is called once per frame
     public void Update()
     {
-        /*if(killerCount >= 1)
+        if(killerCount >= 1)
          {
-             pv.RPC("killerLimitReached", RpcTarget.AllBufferedViaServer);
-         }*/
+            KillerLimitReached();
+         }
     }
 
     public void KillerClicked()
@@ -54,14 +56,21 @@ public class MapManager : MonoBehaviourPunCallbacks
 
         killerCount++;
 
+        playerCount++;
+
         mainPanel.SetActive(false);
     }
 
-    /*[PunRPC]
-    public void killerLimitReached()
+    public void KillerLimitReached()
+    {
+        photonView.RPC("KillerLimitReachedRPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void KillerLimitReachedRPC()
     {
         killerButton.SetActive(false); // This stops displaying the button to become a killer if someone is already a killer in the room.
-    }*/
+    }
 
     public void SurvivorClicked()
     {
@@ -69,7 +78,7 @@ public class MapManager : MonoBehaviourPunCallbacks
         Transform survivorSpawns = spawnPointsSurvivor[randNumSurvivor];
         PhotonNetwork.Instantiate(Path.Combine("Prefabs", "SurvivorModel"), survivorSpawns.position, Quaternion.identity);
 
-        survivorCount++;
+        playerCount++;
 
         mainPanel.SetActive(false);
     }
@@ -79,9 +88,8 @@ public class MapManager : MonoBehaviourPunCallbacks
         Application.Quit();
     }
 
-    public override void OnPlayerLeftRoom(Player otherPlayer)
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        SceneManager.LoadScene("MainMenu");
+        
     }
-
 }

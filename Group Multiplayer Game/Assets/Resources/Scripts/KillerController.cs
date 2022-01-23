@@ -20,6 +20,11 @@ public class KillerController : MonoBehaviourPun, IPunObservable
 
     SurvivorController survivorScript;
 
+    MapManager mapManager;
+
+    public int killCount;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +33,10 @@ public class KillerController : MonoBehaviourPun, IPunObservable
         view = GetComponent<PhotonView>();
 
         //survivorScript = FindObjectOfType<SurvivorController>();
+
+        mapManager = FindObjectOfType<MapManager>();
+
+        killCount = 0;
 
         if (!photonView.IsMine)
         {
@@ -59,6 +68,11 @@ public class KillerController : MonoBehaviourPun, IPunObservable
         {
             KillerRaycast();
         }
+
+        if(killCount == 3)
+        {
+            mapManager.killerWinPanel.SetActive(true);
+        }
     }
 
     public void KillerRaycast()
@@ -77,6 +91,7 @@ public class KillerController : MonoBehaviourPun, IPunObservable
             if (playerHit.tag == "Survivor")
             {
                 playerHit.transform.gameObject.GetComponent<SurvivorController>().survivorHealth -= 10f;
+                killCount++;
             }
         }
     }
