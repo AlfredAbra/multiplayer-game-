@@ -54,10 +54,11 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 1
   OwnershipTransfer: 0
-  observableSearch: 2
+  observableSearch: 0
   ObservedComponents:
   - {fileID: 2152284081951491679}
   - {fileID: 6685060118459569356}
+  - {fileID: 9143901095513230372}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -148,7 +149,8 @@ MonoBehaviour:
   survivorCam: {fileID: 4114308806984524174}
   survivorCamera: {fileID: 6133393968283652582}
   survivorCC: {fileID: 3289006478705865606}
-  survivorDead: 0
+  survivorHealth: 10
+  survivorDeadPanel: {fileID: 0}
 --- !u!1 &8832401557660268556
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
-public class KillerController : MonoBehaviourPun
+public class KillerController : MonoBehaviourPun, IPunObservable
 {
     public float walkSpeed = 10f;
 
@@ -17,14 +18,16 @@ public class KillerController : MonoBehaviourPun
 
     public CharacterController killerCC;
 
-    //SurvivorController survivor;
+    SurvivorController survivorScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Confined;
         killerAnim = GetComponent<Animator>();
         view = GetComponent<PhotonView>();
+
+        //survivorScript = FindObjectOfType<SurvivorController>();
 
         if (!photonView.IsMine)
         {
@@ -52,13 +55,13 @@ public class KillerController : MonoBehaviourPun
             killerAnim.SetFloat("KillerHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
         }
 
-        /*if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             KillerRaycast();
-        }*/
+        }
     }
 
-    /*public void KillerRaycast()
+    public void KillerRaycast()
     {
         view.RPC("KillerRaycastRPC", RpcTarget.All);
     }
@@ -66,7 +69,6 @@ public class KillerController : MonoBehaviourPun
     [PunRPC]
     void KillerRaycastRPC()
     {
-
         Ray killerRaycast = killerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit survivorHit;
         if (Physics.Raycast(killerRaycast, out survivorHit, 50))
@@ -74,10 +76,22 @@ public class KillerController : MonoBehaviourPun
             Transform playerHit = survivorHit.transform;
             if (playerHit.tag == "Survivor")
             {
-                survivor.SurvivorTakesDamage();
+                playerHit.transform.gameObject.GetComponent<SurvivorController>().survivorHealth -= 10f;
             }
         }
-    }*/
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        /*if (stream.IsWriting)
+        {
+            stream.SendNext(survivorScript.survivorHealth);
+        }
+        else
+        {
+            survivorScript.survivorHealth = (float)stream.ReceiveNext();
+        }*/
+    }
 }
 
 

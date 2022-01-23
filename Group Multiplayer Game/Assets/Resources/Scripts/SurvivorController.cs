@@ -3,7 +3,7 @@ using Photon.Pun;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class SurvivorController : MonoBehaviourPun
+public class SurvivorController : MonoBehaviourPun, IPunObservable
 {
     public float walkSpeed = 10;
 
@@ -21,6 +21,8 @@ public class SurvivorController : MonoBehaviourPun
 
     public GameObject survivorDeadPanel;
 
+    MapManager mapManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,9 @@ public class SurvivorController : MonoBehaviourPun
         survivorAnim = GetComponent<Animator>();
         view = GetComponent<PhotonView>();
 
-        //survivorHealth = 10f;
+        survivorHealth = 10f;
+
+        mapManager = FindObjectOfType<MapManager>();
 
         //survivorDeadPanel.SetActive(false);
 
@@ -55,16 +59,16 @@ public class SurvivorController : MonoBehaviourPun
             // Animations
             survivorAnim.SetFloat("SurvivorVertical", Input.GetAxis("Vertical"), 0.05f, Time.deltaTime);
             survivorAnim.SetFloat("SurvivorHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
-
         }
 
-        /*if(survivorHealth == 0)
+        if (survivorHealth == 0)
         {
-            survivorDeadPanel.SetActive(true);
-        }*/
+            Destroy(gameObject);
+            SurvivorDied();
+        }
     }
 
-    /*public void SurvivorTakesDamage()
+    public void SurvivorTakesDamage()
     {
         view.RPC("SurvivorTakesDamageRPC", RpcTarget.All);
     }
@@ -73,6 +77,26 @@ public class SurvivorController : MonoBehaviourPun
     void SurvivorTakesDamageRPC()
     {
         survivorHealth -= 10f;
-    }*/
+    }
+
+    public void SurvivorDied()
+    {
+        photonView.RPC("SurvivorDiedRPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void SurvivorDiedRPC()
+    {
+        survivorCamera.enabled = false;
+        if (photonView.IsMine)
+        {
+            mapManager.survivorDeadPanel.SetActive(true);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        
+    }
 }
 

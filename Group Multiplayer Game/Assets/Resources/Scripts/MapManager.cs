@@ -1,6 +1,8 @@
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
+using UnityEngine.SceneManagement;
+using Photon.Realtime;
 
 public class MapManager : MonoBehaviourPunCallbacks
 {
@@ -8,6 +10,9 @@ public class MapManager : MonoBehaviourPunCallbacks
     public int survivorCount = 0;
 
     public GameObject mainPanel;
+    public GameObject survivorDeadPanel;
+
+    public Camera mainCamera;
 
     public GameObject killerModel;
     public GameObject survivorModel;
@@ -16,10 +21,18 @@ public class MapManager : MonoBehaviourPunCallbacks
 
     PhotonView view;
 
+    SurvivorController survivorScript;
+
     public void Start()
     {
         int randNumPlayer = Random.Range(0, spawnPointsSurvivor.Length);
         int randNumKiller = Random.Range(0, spawnPointsKiller.Length);
+
+        survivorScript = FindObjectOfType<SurvivorController>();
+
+        mainCamera = GetComponent<Camera>();
+
+        mainCamera.enabled = false;
 
         view = GetComponent<PhotonView>();
     }
@@ -55,7 +68,7 @@ public class MapManager : MonoBehaviourPunCallbacks
         int randNumSurvivor = Random.Range(0, spawnPointsSurvivor.Length);
         Transform survivorSpawns = spawnPointsSurvivor[randNumSurvivor];
         PhotonNetwork.Instantiate(Path.Combine("Prefabs", "SurvivorModel"), survivorSpawns.position, Quaternion.identity);
-        
+
         survivorCount++;
 
         mainPanel.SetActive(false);
@@ -65,4 +78,10 @@ public class MapManager : MonoBehaviourPunCallbacks
     {
         Application.Quit();
     }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }
