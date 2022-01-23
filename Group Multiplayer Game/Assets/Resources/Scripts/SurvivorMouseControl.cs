@@ -3,13 +3,14 @@ using Photon.Pun;
 
 public class SurvivorMouseControl : MonoBehaviourPun
 {
-
     public Transform survivor;
+
+    float mouseSens = 200f;
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame
@@ -17,9 +18,9 @@ public class SurvivorMouseControl : MonoBehaviourPun
     {
         if (photonView.IsMine)
         {
-            float survivorMouseX = Input.GetAxis("Mouse X");
+            float survivorMouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
 
-            survivor.Rotate(Vector3.up * survivorMouseX);
+            survivor.Rotate(0,survivorMouseX * mouseSens,0f);
         }
 
     }

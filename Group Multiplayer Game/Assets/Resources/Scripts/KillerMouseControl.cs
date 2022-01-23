@@ -4,14 +4,14 @@ using Photon.Pun;
 public class KillerMouseControl : MonoBehaviourPun
 {
 
-    float mouseSens = 300f;
+    float mouseSens = 200f;
 
     public Transform killer;
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame
@@ -20,9 +20,9 @@ public class KillerMouseControl : MonoBehaviourPun
         if (photonView.IsMine)
         {
             // Mouse Look
-            float killerMouseX = Input.GetAxis("Mouse X");
+            float killerMouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
 
-            killer.Rotate(Vector3.up * killerMouseX);
+            killer.Rotate(0f,killerMouseX * mouseSens,0f);
         }
 
     }

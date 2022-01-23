@@ -16,7 +16,7 @@ public class MapManager : MonoBehaviourPunCallbacks
 
     PhotonView view;
 
-    void Start()
+    public void Start()
     {
         int randNumPlayer = Random.Range(0, spawnPointsSurvivor.Length);
         int randNumKiller = Random.Range(0, spawnPointsKiller.Length);
@@ -31,7 +31,6 @@ public class MapManager : MonoBehaviourPunCallbacks
          {
              pv.RPC("killerLimitReached", RpcTarget.AllBufferedViaServer);
          }*/
-        
     }
 
     public void KillerClicked()

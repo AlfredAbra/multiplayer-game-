@@ -17,7 +17,7 @@ public class KillerController : MonoBehaviourPun
 
     public CharacterController killerCC;
 
-    float killerRotationX = 0f;
+    //SurvivorController survivor;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,7 @@ public class KillerController : MonoBehaviourPun
         {
             killerCamera.enabled = false;
         }
+
     }
 
     // Update is called once per frame
@@ -50,6 +51,33 @@ public class KillerController : MonoBehaviourPun
             killerAnim.SetFloat("KillerVertical", Input.GetAxis("Vertical"), 0.05f, Time.deltaTime);
             killerAnim.SetFloat("KillerHorizontal", Input.GetAxis("Horizontal"), 0.05f, Time.deltaTime);
         }
+
+        /*if (Input.GetMouseButtonDown(0))
+        {
+            KillerRaycast();
+        }*/
     }
 
+    /*public void KillerRaycast()
+    {
+        view.RPC("KillerRaycastRPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void KillerRaycastRPC()
+    {
+
+        Ray killerRaycast = killerCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit survivorHit;
+        if (Physics.Raycast(killerRaycast, out survivorHit, 50))
+        {
+            Transform playerHit = survivorHit.transform;
+            if (playerHit.tag == "Survivor")
+            {
+                survivor.SurvivorTakesDamage();
+            }
+        }
+    }*/
 }
+
+

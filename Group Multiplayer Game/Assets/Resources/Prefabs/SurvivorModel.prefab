@@ -98,7 +98,7 @@ MonoBehaviour:
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
   m_RotationModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 1
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
@@ -148,6 +148,7 @@ MonoBehaviour:
   survivorCam: {fileID: 4114308806984524174}
   survivorCamera: {fileID: 6133393968283652582}
   survivorCC: {fileID: 3289006478705865606}
+  survivorDead: 0
 --- !u!1 &8832401557660268556
 GameObject:
   m_ObjectHideFlags: 0
