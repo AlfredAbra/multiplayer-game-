@@ -85,7 +85,7 @@ public class KillerController : MonoBehaviourPun, IPunObservable
     {
         Ray killerRaycast = killerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit survivorHit;
-        if (Physics.Raycast(killerRaycast, out survivorHit, 50))
+        if (Physics.Raycast(killerRaycast, out survivorHit, 5))
         {
             Transform playerHit = survivorHit.transform;
             if (playerHit.tag == "Survivor")

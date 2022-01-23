@@ -13,6 +13,8 @@ public class ServerConnectManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private byte maxPlayerCount = 4;
 
+    public int playerCount = 0;
+
     public void PlayClicked()
     {
         if(playerName.text.Length >= 1) // If the playerName input field is not empty then...
@@ -47,5 +49,7 @@ public class ServerConnectManager : MonoBehaviourPunCallbacks
         Debug.Log("Yep, you managed to join a room!");
 
         SceneManager.LoadScene("Map");
+
+        playerCount++;
     }
 }

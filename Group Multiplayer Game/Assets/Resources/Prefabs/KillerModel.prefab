@@ -60,6 +60,7 @@ MonoBehaviour:
   killerCam: {fileID: 6909230336548613165}
   killerCamera: {fileID: 4768364244262960351}
   killerCC: {fileID: -4181397827919755426}
+  killCount: 0
 --- !u!114 &-1818135082864690558
 MonoBehaviour:
   m_ObjectHideFlags: 0
